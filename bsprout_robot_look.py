@@ -28,7 +28,12 @@ home()
 
 # Look to evaluate
 x,y,z,a,b,c = 0.3, 0.0, 0.20, -0.1, 0.5, 0.0
-robot.move_pose(x,y,z,a,b,c) 
+robot.move_pose(x,y,z,a,b,c)
+# eval = camera.eval_dome_remove()
+# if eval == 1:
+#	continue
+# elif eval == 0:
+#	break
 
 x,y,z,a,b,c = 0.4, 0.0, 0.20, -0.1, 0.3, 0.0
 robot.move_pose(x,y,z,a,b,c)
