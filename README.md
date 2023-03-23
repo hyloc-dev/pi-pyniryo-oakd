@@ -1,7 +1,7 @@
 # pi-pyniryo-oakdsr
 Run NED &amp; OAK-D-SR from a Pi
 
-First, clone this repository to your Pi. You will need to be signed into your GitHub to do this on the Pi.
+First, clone this repository to your Pi.
 
 `git clone https://github.com/hyloc-dev/pi-pyniryo-oakdsr`
 
