@@ -5,7 +5,7 @@
 from pyniryo import *
 
 # ROBOT CALIBRATION & BOOT
-robot_ip_address = "10.0.0.32"
+robot_ip_address = "10.10.10.10" # this is assuming you are on Niryo hotspot
 
 # Connect to robot 
 
