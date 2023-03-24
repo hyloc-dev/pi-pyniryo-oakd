@@ -1,4 +1,4 @@
-# This successfully grabs 2 good 640 x 480 p pictures in 5 seconds.
+# This successfully grabs pictures after letting the camera adjust for exposure.
 
 import time
 from pathlib import Path
@@ -51,7 +51,3 @@ def cam_grab():
                 for encFrame in qJpeg.tryGetAll():
                     with open(f"image_eval_data/{int(time.time() * 1)}.jpeg", "wb") as f:
                         f.write(bytearray(encFrame.getData()))
-
-# print("Hello")
-# input("Would you like to start?")
-# cam_grab()
