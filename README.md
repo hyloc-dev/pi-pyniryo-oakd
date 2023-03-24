@@ -1,5 +1,5 @@
 # pi-pyniryo-oakdsr
-### Run NED &amp; OAK-D-SR from a Pi
+### Run NED &amp; OAK-D from a Pi
 
 First, clone this repository to your Pi.
 
