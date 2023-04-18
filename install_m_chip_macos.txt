@@ -1,0 +1,16 @@
+# Installing on M chip macos
+
+Step 1.
+python3 -m venv venv  
+
+Step 2.
+pip3 install pip==23.0.1  
+
+Step 3.
+pip3 install keras==2.12.0 
+
+Step 4.
+pip3 install Pillow==9.0.0 
+
+Step 5.
+python3 -m pip install tensorflow-macos
