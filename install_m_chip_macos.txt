@@ -13,4 +13,4 @@ Step 4.
 pip3 install Pillow==9.0.0 
 
 Step 5.
-python3 -m pip install tensorflow-macos
+python3 -m pip install tensorflow-macos # note: this is tf2
