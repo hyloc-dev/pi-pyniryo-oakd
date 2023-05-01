@@ -1,4 +1,4 @@
-# pi-pyniryo-oakdsr
+# pi-pyniryo-oakd
 ### Run NED &amp; OAK-D from a Pi
 
 First, clone this repository to your Pi.
@@ -7,7 +7,7 @@ First, clone this repository to your Pi.
 
 Afterwards, you will need to enter the folder within your Pi.
 
-`cd pi-pyniryo-oakdsr`
+`cd pi-pyniryo-oakd`
 
 At this stage, you will need to launch the following command so that the Niryo library is installed on the Pi.
 
