@@ -3,7 +3,7 @@
 
 First, clone this repository to your Pi.
 
-`git clone https://github.com/hyloc-dev/pi-pyniryo-oakdsr`
+`git clone https://github.com/hyloc-dev/pi-pyniryo-oakd`
 
 Afterwards, you will need to enter the folder within your Pi.
 
