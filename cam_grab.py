@@ -45,8 +45,8 @@ def cam_grab():
         while time.time() < startx:
             inRgb = qRgb.tryGet()  # Non-blocking call
 
-            if inRgb is not None:
-                cv2.imshow("rgb", inRgb.getCvFrame())
+            #if inRgb is not None:
+                #cv2.imshow("rgb", inRgb.getCvFrame())
             if time.time() > (startx - 0.25):
                 for encFrame in qJpeg.tryGetAll():
                     with open(f"image_eval_data/{int(time.time() * 1)}.jpeg", "wb") as f:
