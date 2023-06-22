@@ -1,8 +1,6 @@
 import os
 import paramiko
 
-
-
 def sftp_upload():
 
     host = '104.239.144.16'
