@@ -95,7 +95,7 @@ def cam_grab_series(duration):
 
             #if inRgb is not None:
                 #cv2.imshow("rgb", inRgb.getCvFrame())
-            if time.time() > (start_time + 0.25):
+            if time.time() > (start_time + 1.5):
                 for encFrame in qJpeg.tryGetAll():
                     with open(f"image_eval_data/{int(time.time() * 1)}.jpeg", "wb") as f:
                         f.write(bytearray(encFrame.getData()))
