@@ -1,43 +1,47 @@
 import depthai as dai
 
-# Create pipeline
-pipeline = dai.Pipeline()
+def record_oak():
 
-# Define sources and output
-camRgb = pipeline.create(dai.node.ColorCamera)
-videoEnc = pipeline.create(dai.node.VideoEncoder)
-xout = pipeline.create(dai.node.XLinkOut)
+    # Create pipeline
+    pipeline = dai.Pipeline()
 
-xout.setStreamName('h265')
+    # Define sources and output
+    camRgb = pipeline.create(dai.node.ColorCamera)
+    videoEnc = pipeline.create(dai.node.VideoEncoder)
+    xout = pipeline.create(dai.node.XLinkOut)
 
-# Properties
-camRgb.setBoardSocket(dai.CameraBoardSocket.CAM_A)
-camRgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
-videoEnc.setDefaultProfilePreset(30, dai.VideoEncoderProperties.Profile.H265_MAIN)
+    xout.setStreamName('h265')
 
-# Linking
-camRgb.video.link(videoEnc.input)
-videoEnc.bitstream.link(xout.input)
+    # Properties
+    camRgb.setBoardSocket(dai.CameraBoardSocket.CAM_A)
+    camRgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
+    videoEnc.setDefaultProfilePreset(30, dai.VideoEncoderProperties.Profile.H265_MAIN)
 
-# Connect to device and start pipeline
-with dai.Device(pipeline) as device:
+    # Linking
+    camRgb.video.link(videoEnc.input)
+    videoEnc.bitstream.link(xout.input)
 
-    # Output queue will be used to get the encoded data from the output defined above
-    q = device.getOutputQueue(name="h265", maxSize=30, blocking=True)
+    # Connect to device and start pipeline
+    with dai.Device(pipeline) as device:
 
-    # The .h265 file is a raw stream file (not playable yet)
-    with open('video.h265', 'wb') as videoFile:
-        print("Press Ctrl+C to stop encoding...")
-        try:
-            while True:
-                h265Packet = q.get()  # Blocking call, will wait until a new data has arrived
-                h265Packet.getData().tofile(videoFile)  # Appends the packet data to the opened file
-        except KeyboardInterrupt:
-            # Keyboard interrupt (Ctrl + C) detected
-            pass
+        # Output queue will be used to get the encoded data from the output defined above
+        q = device.getOutputQueue(name="h265", maxSize=30, blocking=True)
 
-    print("To view the encoded data, convert the stream file (.h265) into a video file (.mp4) using ffmpeg on Linux or HandBrake on Mac")
+        # The .h265 file is a raw stream file (not playable yet)
+        with open('video.h265', 'wb') as videoFile:
+            print("Press Ctrl+C to stop encoding...")
+            try:
+                while True:
+                    h265Packet = q.get()  # Blocking call, will wait until a new data has arrived
+                    h265Packet.getData().tofile(videoFile)  # Appends the packet data to the opened file
+            except KeyboardInterrupt:
+                # Keyboard interrupt (Ctrl + C) detected
+                pass
+
+        print("To view the encoded data, convert the stream file (.h265) into a video file (.mp4) using ffmpeg on Linux or HandBrake on Mac")
 # input_file = 'video.h265'
 # output_file = 'output.mp4'
+
+# HandBrake on Mac also has a CLI
 
 # ffmpeg.input(input_file).output(output_file, vcodec='libx264', crf=28, acodec='aac', strict='experimental', b='192k').run()
