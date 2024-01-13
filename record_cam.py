@@ -1,6 +1,7 @@
 
 import depthai as dai
 import time
+import datetime
 
 def record_oak(duration_seconds=5):
     # Create pipeline
@@ -27,9 +28,13 @@ def record_oak(duration_seconds=5):
         # Output queue will be used to get the encoded data from the output defined above
         q = device.getOutputQueue(name="h265", maxSize=30, blocking=True)
 
+        # Create a unique timestamp for the filename
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f'video_{timestamp}.h265'
+
         # The .h265 file is a raw stream file (not playable yet)
-        with open('video.h265', 'wb') as videoFile:
-            print(f"Recording for {duration_seconds} seconds. Press Ctrl+C to stop encoding...")
+        with open(filename, 'wb') as videoFile:
+            print(f"Recording for {duration_seconds} seconds.")
             start_time = time.time()
 
             try:
@@ -40,11 +45,22 @@ def record_oak(duration_seconds=5):
                 # Keyboard interrupt (Ctrl + C) detected
                 pass
 
-        print("Recording complete. To view the encoded data, convert the stream file (.h265) into a video file (.mp4) using ffmpeg on Linux or HandBrake on Mac")
+        print(f"Recording complete. Video saved as {filename}. ")
 
 # Call the function with the default duration (5 seconds)
-record_oak()
+# record_oak()
 
-# Call the function with a custom duration (e.g., 10 seconds)
-# record_oak(duration_seconds=10)
+
+def record_oak_interval(interval_seconds=10,duration_seconds=5,total_duration_seconds=86400):
+    start_time = time.time()
+
+    while time.time() - start_time < total_duration_seconds:
+        record_oak(duration_seconds)  # Call the record_oak function
+
+        # Wait for the specified interval before recording again
+        time.sleep(interval_seconds)
+
+# Example: Record every 5 seconds for a total duration of 30 seconds
+record_oak_interval(interval_seconds=5, duration_seconds = 5, total_duration_seconds=30)
+
 
